@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 /**
  * 日期工具类
@@ -17,8 +16,6 @@ public class DateUtil {
 	private static SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
 	@SuppressWarnings("unused")
 	private static SimpleDateFormat dateTimeFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	@SuppressWarnings({ "rawtypes", "unused" })
-	private List list;
 	/**
 	 * 根据生日判断年龄
 	 * @param birthDate
@@ -79,9 +76,7 @@ public class DateUtil {
 		Double dayNum=0.0;
 		if(format1.matches(regex) && format2.matches(format2)) {
 			long startTime = date1.getTime();
-			System.out.println(startTime);
 			long endTime = date2.getTime();
-			System.out.println(endTime);
 			dayNum=Math.abs(((endTime-startTime)/dateTime*1.0));
 		}
 		dayNum=Math.ceil(dayNum);
@@ -131,15 +126,25 @@ public class DateUtil {
 	 * @param args
 	 */
 	public static boolean dateIsInThisWeek(Date date) {
-		//生成今天的年周
+		Date nowDate=new Date();
 		Calendar calendar=Calendar.getInstance();
-		int nowYear=calendar.get(Calendar.YEAR);
-		int nowWeek=calendar.get(Calendar.WEEK_OF_YEAR);
-		//获得传过来的日期的年周
+		calendar.setTime(nowDate);
+		//本周的第几天
+		int dayforwork = calendar.get(Calendar.DAY_OF_WEEK);
+		//设置本周第一天的时间
+		calendar.add(Calendar.DAY_OF_YEAR, 1-dayforwork);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		Date firstDate=calendar.getTime();
+		//设置本周最后一天的时间
+		calendar.add(Calendar.DAY_OF_YEAR, 6);
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		Date lastDate=calendar.getTime();
 		calendar.setTime(date);
-		int dateYear=calendar.get(Calendar.YEAR);
-		int dateWeek=calendar.get(Calendar.WEEK_OF_YEAR);
-		return nowYear==dateYear && nowWeek==dateWeek;
+		return compareTime(date, firstDate)>=0 && compareTime(date, lastDate)<=0;
 	}
 	
 	/**
@@ -205,4 +210,5 @@ public class DateUtil {
 		}
 		return -1;
 	}
+	
 }
