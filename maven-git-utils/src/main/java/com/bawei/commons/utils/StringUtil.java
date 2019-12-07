@@ -93,9 +93,25 @@ public class StringUtil {
 		char newChar = (char) (startChar + random.nextInt(26));
 		return newChar;
 	}
-
+	
 	/**
-	 * 生成数字随机数
+	 * 获取随机字符串
+	 * 
+	 * @param args
+	 */
+	public static char getBigRandom() {
+		// 生成随机类
+		Random random = new Random();
+		// 第一种方式
+		// 开始字符在acsii码
+		int startChar = 'A' + 0;
+		// 生成随机字符
+		char newChar = (char) (startChar + random.nextInt(26));
+		return newChar;
+	}
+	
+	/**
+	 * 生成数字随机数小写
 	 * 
 	 * @param num
 	 * @return
@@ -109,16 +125,43 @@ public class StringUtil {
 			sb.append(random);
 		}
 
+		return sb.toString();
+	}
+	
+	/**
+	 * 生成数字随机数大小写都可以的样子
+	 * @param num
+	 * @return
+	 */
+	public static String getRandomBigAndLittleLetter(int num) {
+		// 保存生成胡字符
+		StringBuffer sb = new StringBuffer();
 		// 大小写都可以生成的方式
-//		String randomcode = "";
-//		for(int i=0;i<num;i++)
-//		{
-//			//52个字母与6个大小写字母间的符号；范围为91~96
-//			int value = (int)(Math.random()*58+65);
-//			while(value>=91 && value<=96)
-//				value = (int)(Math.random()*58+65);
-//			randomcode = randomcode + (char)value;
-//		}
+		for(int i=0;i<num;i++)
+		{
+			//52个字母与6个大小写字母间的符号；范围为91~96
+			int value = (int)(Math.random()*58+65);
+			while(value>=91 && value<=96)
+				value = (int)(Math.random()*58+65);	
+			sb.append((char)value);
+		}
+
+		return sb.toString();
+	}
+	
+	/**
+	 * 生成数字随机数大写
+	 * @param num
+	 * @return
+	 */
+	public static String getRandomBigLetter(int num) {
+		// 保存生成胡字符
+		StringBuffer sb = new StringBuffer();
+		// 生成随机字符
+		for (int i = 0; i < num; i++) {
+			char random = getBigRandom();
+			sb.append(random);
+		}
 
 		return sb.toString();
 	}
@@ -139,7 +182,12 @@ public class StringUtil {
 		return newChar;
 	}
 
-	public static String getNumAndLetter(int num) {
+	/**
+	 * 生成随机的小写和数字验证码
+	 * @param num
+	 * @return
+	 */
+	public static String getNumAndLittleLetter(int num) {
 		// 保存生成胡字符
 		StringBuffer sb = new StringBuffer();
 		Random random = new Random();
@@ -147,6 +195,52 @@ public class StringUtil {
 		for (int i = 0; i < num; i++) {
 			if (random.nextInt(36) > 10) {
 				sb.append(getRandom());
+			} else {
+				sb.append(getNumLetter());
+			}
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * 生成随机的大写和数字验证码
+	 * @param num
+	 * @return
+	 */
+	public static String getNumAndBigLetter(int num) {
+		// 保存生成胡字符
+		StringBuffer sb = new StringBuffer();
+		Random random = new Random();
+		// 生成随机字符
+		for (int i = 0; i < num; i++) {
+			if (random.nextInt(36) > 10) {
+				sb.append(getBigRandom());
+			} else {
+				sb.append(getNumLetter());
+			}
+		}
+		return sb.toString();
+	}
+	
+	
+	/**
+	 * 生成随机的大写和小写和数字验证码
+	 * @param num
+	 * @return
+	 */
+	public static String getNumAndBigAndLittleLetter(int num) {
+		// 保存生成胡字符
+		StringBuffer sb = new StringBuffer();
+		Random random = new Random();
+		
+		// 生成随机字符
+		for (int i = 0; i < num; i++) {
+			if (random.nextInt(36) > 10) {
+				//52个字母与6个大小写字母间的符号；范围为91~96
+				int value = (int)(Math.random()*58+65);
+				while(value>=91 && value<=96)
+					value = (int)(Math.random()*58+65);	
+				sb.append((char)value);
 			} else {
 				sb.append(getNumLetter());
 			}
