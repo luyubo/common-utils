@@ -47,13 +47,13 @@ public class FileUtil {
 	public static String readTextFileByLine(String filePath) {
 		BufferedReader br=null;
 		StringBuffer sb=new StringBuffer();
+		String str=null;
 		try {
 			br=new BufferedReader(new FileReader(new File(filePath)));
-			do {
-				sb.append(br.readLine());
+			while((str=br.readLine())!=null) {
+				sb.append(str);
 				sb.append("\r\n");
-			}while(br.read()!=-1);
-			
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
