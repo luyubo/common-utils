@@ -328,4 +328,36 @@ public class StringUtil {
 		
 		return familyName+givenName;
 	}
+	
+	/**
+	 * 判断是否是数值
+	 * @param data
+	 * @return
+	 */
+	public static boolean isNumber(String data) {
+		String regex="\\d+";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher=pattern.matcher(data);
+		boolean matches = matcher.matches();
+		return matches;
+	}
+	
+	/**
+	 * 判断输入的是否为手机号
+	 * @param src
+	 * @return
+	 */
+	public static boolean judgeTelephoneIsOk(String src){
+		//TODO 实现代码
+		boolean flag = isNumber(src);
+		if(flag) {
+			String regex="^1[3578]\\d{9}$";
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher=pattern.matcher(src);
+			boolean matches = matcher.matches();
+			return matches;
+		}else {
+			return false;
+		}
+	}
 }

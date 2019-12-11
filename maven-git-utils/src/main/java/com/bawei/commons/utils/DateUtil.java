@@ -138,7 +138,7 @@ public class DateUtil {
 		calendar.set(Calendar.SECOND, 0);
 		Date firstDate=calendar.getTime();
 		//设置本周最后一天的时间
-		calendar.add(Calendar.DAY_OF_YEAR, 6);
+		calendar.add(Calendar.DAY_OF_YEAR, 7);
 		calendar.set(Calendar.HOUR_OF_DAY, 23);
 		calendar.set(Calendar.MINUTE, 59);
 		calendar.set(Calendar.SECOND, 59);
@@ -177,6 +177,21 @@ public class DateUtil {
 	}
 	
 	/**
+	 * 获得每月的第一天
+	 */
+	public static Date getFirstMonthDay(String date) {
+		Date parse;
+		try {
+			parse = dateFormat.parse(date);
+			return getFirstMonthDay(parse);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/**
 	 * 获取指定日期的最后一天
 	 * @param args
 	 */
@@ -191,6 +206,22 @@ public class DateUtil {
 		calendar.setTime(date2);
 		calendar.add(Calendar.MILLISECOND, -1);
 		return calendar.getTime();
+	}
+	
+	/**
+	 * 获取指定日期的最后一天,输入字符串写法
+	 * @param args
+	 */
+	public static Date lastMonthDay(String date) {
+		Date parse;
+		try {
+			parse = dateFormat.parse(date);
+			return lastMonthDay(parse);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	/**
