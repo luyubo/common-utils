@@ -13,9 +13,21 @@ import java.util.Date;
 
 public class DateUtil {
 	//定义常量
-	private static SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-	@SuppressWarnings("unused")
-	private static SimpleDateFormat dateTimeFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+	public static SimpleDateFormat dateTimeFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	/**
+	 * @Title: format   
+	 * @Description: 时间格式化  
+	 * @param: @param theDate
+	 * @param: @return      
+	 * @return: String      
+	 * @throws
+	 */
+	public static String format(Date theDate) {
+		return dateFormat.format(theDate);
+	}
+	
 	/**
 	 * 根据生日判断年龄
 	 * @param birthDate
@@ -53,7 +65,7 @@ public class DateUtil {
 		Date birthDate=null;
 		//解析日期字符串为Date对象
 		try {
-			birthDate=new SimpleDateFormat("yyyy-MM-dd").parse(birthDateStr);
+			birthDate=dateFormat.parse(birthDateStr);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,8 +82,8 @@ public class DateUtil {
 	public static int getDayNum(Date date1,Date date2) {
 		//一天有多少毫秒
 		Long dateTime=1000*60*60*24L;
-		String format1 = new SimpleDateFormat("yyyy-MM-dd").format(date1);
-		String format2 = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+		String format1 = dateFormat.format(date1);
+		String format2 = dateFormat.format(date2);
 		String regex="\\d{4}-(0[0-9]|1[0-2])-((0|1|2)\\d|(3)[0-1])";
 		Double dayNum=0.0;
 		if(format1.matches(regex) && format2.matches(format2)) {
@@ -204,7 +216,7 @@ public class DateUtil {
 		//把获得月份值的日期放入获取指定日期月份的第一天的方法中
 		Date date2 = getFirstMonthDay(calendar.getTime());
 		calendar.setTime(date2);
-		calendar.add(Calendar.MILLISECOND, -1);
+		calendar.add(Calendar.SECOND, -1);
 		return calendar.getTime();
 	}
 	

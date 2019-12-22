@@ -32,6 +32,14 @@ public class FileUtil {
 	}
 	
 	/**
+	 * 获取系统当前用户目录
+	 * @return
+	 */
+	public static String getSystemUserHome() {
+		return System.getProperty("user.home");
+	}
+	
+	/**
 	 * 操作系统临时目录
 	 * @return
 	 */
@@ -114,6 +122,14 @@ public class FileUtil {
 	}
 	
 	/**
+	 * 递归删除文件
+	 * @param filePath
+	 */
+	public static void deleteFile(String filePath) {
+		deleteFile(new File(filePath));
+	}
+	
+	/**
 	 * 获得文件的大小,可以定义小数点后几位
 	 *返回文件以指定格式
 	 * @param file
@@ -123,7 +139,7 @@ public class FileUtil {
 		long length=file.length();
 		double len=length/1024.0;
 		if(num==null || num==0) {
-			return Math.ceil((length/1024.0))+"kb";
+			return Math.round((length/1024.0))+"kb";
 		}else {
 			return String.format("%."+num+"f", len)+"kb";
 		}	
@@ -137,7 +153,9 @@ public class FileUtil {
 	 */
 	public static String getFileSize(File file) {
 		long length=file.length();
-		return Math.ceil((length/1024.0))+"kb";
+		double len = length/1024.0;
+//		Math.round((length/1024.0))
+		return String.format("%.2f",len)+"kb";
 	}
 	
 	/**

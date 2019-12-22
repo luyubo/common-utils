@@ -1,7 +1,11 @@
 package com.bawei.commons.utils;
 
 import java.security.MessageDigest;
-
+/**
+ * 采用md5加密解密
+ * @author 77028
+ *
+ */
 public class Md5Util {
 	/**
 	 * MD5加码 生成32位md5码  
