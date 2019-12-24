@@ -72,4 +72,12 @@ public class DateUtilTest {
 		System.out.println("描述方法的作用:0表示输入的日期相同,1表示输入日期不同:\n"+compareTime);
 	}
 	
+	/**
+	 * 测试方法
+	 */
+	@Test
+	public void dateisInWeekDayTest() {
+		Integer dateisInWeekDay = DateUtil.dateisInWeekDay("2019-12-25");
+		System.out.println("星期"+dateisInWeekDay);
+	}
 }

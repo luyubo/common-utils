@@ -1,6 +1,5 @@
 package com.bawei.commons.utils.test;
 
-import java.util.List;
 
 import org.junit.Test;
 

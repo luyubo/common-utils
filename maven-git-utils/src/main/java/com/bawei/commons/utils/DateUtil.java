@@ -133,6 +133,23 @@ public class DateUtil {
 		return false;
 	}
 	
+	public static Integer dateisInWeekDay(String date) {
+		Calendar calendar=Calendar.getInstance();
+		 Date parse=null;
+		try {
+			parse = dateFormat.parse(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		calendar.setTime(parse);
+		int w=calendar.get(Calendar.DAY_OF_WEEK)-1;
+		if(w==0) {
+			w=7;
+		}
+		return w;
+	}
+	
 	/**
 	 * 判断日期是否在本周
 	 * @param args
