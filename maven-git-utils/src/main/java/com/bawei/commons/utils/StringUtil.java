@@ -382,4 +382,12 @@ public class StringUtil {
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";  
         return  str.matches(regex);	
 	}
+	
+	/**
+	 * 判断是否是http
+	 */
+	public static boolean ishttp(String str) {
+		String regax="http://";
+		return str.matches(regax);
+	}
 }

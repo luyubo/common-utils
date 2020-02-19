@@ -270,5 +270,10 @@ public class DateUtil {
 		}
 		return -1;
 	}
+
+	public static Date randomDate(String string, String string2) {
+		// TODO Auto-generated method stub
+		return new Date();
+	}
 	
 }
